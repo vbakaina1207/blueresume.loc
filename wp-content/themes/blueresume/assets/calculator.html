@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/media.css">
+</head>
+<body>
+
+<div class="line">
+    <header>
+        <div class="top__line">
+            <div class="top__line_left">
+                <div class="top__line_left-menu">
+                    <ul>
+                        <li><a class="scroll-to" href="#Works">Works</a></li>
+                        <li><a class="scroll-to" href="#About">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="top__line_center">
+                <div class="top__line_center-logo">
+                    <a href="#"><img src="img/logo.webp" alt="img"></a>
+                </div>
+            </div>
+            <div class="top__line_right">
+                <div class="top__line_right-menu">
+                    <ul>
+                        <li><a class="scroll-to" href="#Links">Links</a></li>
+                        <li><a class="scroll-to" href="#Contacts">Contacts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="button_mobile__menu" class="mobile__menu"></div>
+    <div id="block_mobile__menu" class="mobile__block">
+        <ul>
+            <li><a class="scroll-to" href="#Works">Works</a></li>
+            <li><a class="scroll-to" href="#About">About</a></li>
+            <li><a class="scroll-to" href="#Links">Links</a></li>
+            <li><a class="scroll-to" href="#Contacts">Contacts</a></li>
+        </ul>
+    </div>
+    <span class="line-1"></span>
+    <span class="line-2"></span>
+    <span class="line-3"></span>
+    <span class="line-4"></span>
+    <span class="line-5"></span>
+</div>
+<div class="calculator">
+    <h1>Calculator</h1>
+    <form action="#">
+        <select onchange="calc()" id="type_site">
+            <option value="0">Выбрать</option>
+            <option value="5000">Простой сайта</option>
+            <option value="7000">Сложный сайта</option>
+            <option value="10000">Сайт интернет-магазин</option>
+        </select><br/>
+        <input type="checkbox" onchange="calc()" value="3000" id="is_seo" /> <label for="is_seo">Требуется SEO?</label>
+        <br/>
+        Кол-во вариантов: <input type="text" id="count" value="1" onchange="calc()" />
+    </form>
+    <div>Стоимость разработки сайта: <span id="result">0</span> грн.</div>
+</div>
+<footer>
+    <div class="contact">
+        <div id="Contacts"></div>
+        <div class="contact__head">
+            <h2>Contacts</h2>
+        </div>
+        <div class="contact__info">
+            <div class="contact__info_text">
+                Positive pleasure-oriented goals are much more powerful motivators than negative fear-based ones.
+            </div>
+            <div class="contact__info_link">
+                <a href="#" target="_blank"><span class="icon ed-vk"></span></a>
+                <a href="#" target="_blank"><span class="icon ed-fb"></span></a>
+                <a href="#" target="_blank"><span class="icon ed-in"></span></a>
+            </div>
+        </div>
+        <div class="contact__form">
+            <form onsubmit="return validate();">
+                <div class="form-group-line">
+                    <label class="form-label" for="in_name">Name</label>
+                    <input type="text" class="form-input" id="in_name" placeholder="Incognito">
+                    <div class="form-error" id="in_name_error">Поле должно быть заполнено</div>
+                </div>
+                <div class="form-group-line">
+                    <label class="form-label" for="in_email">E-mail</label>
+                    <input type="email" class="form-input" id="in_email" placeholder="incognito@gmail.com">
+                    <div class="form-error" id="in_email_error">Вы неправильно ввели E-mail</div>
+                </div>
+
+                <div class="form-group-line">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea class="form-input" id="message" rows="3" placeholder="Your question or suggestion"></textarea>
+                </div>
+                <button type="submit" class="button-form">
+                    <span class="icon ed-tl"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright__text">
+            Copyright &copy; 2018 Denis Abdullin – deab.ru
+        </div>
+        <div class="copyright__link">
+            <a href="#">Invoicing</a>
+            <a href="#">Documents</a>
+        </div>
+</footer>
+<div class="contain-popup">
+    <div class="popup">
+        <div class="popup__close"></div>
+        <div class="popup__head">
+            <h3>
+                Информационное сообщение
+            </h3>
+        </div>
+        <div class="popup__text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing.
+        </div>
+    </div>
+</div>
+<div class="to__top">
+    <img src="img/top.svg" alt="img">
+</div>
+
+<!--<canvas id="myCanvasBG" width="200" height="100">-->
+<!--    Your browser does not support the HTML5 canvas tag.-->
+<!--</canvas>-->
+
+<!--<script>-->
+<!--    let canvasInfo = document.getElementById("myCanvasBG");-->
+<!--    console.log(canvasInfo);-->
+<!--    let canvasInner = canvasInfo.getContext("2d");-->
+<!--    // Create gradient-->
+<!--    let canvasGradient = canvasInner.createLinearGradient(0,0,200,0);-->
+<!--    canvasGradient.addColorStop(0,"#007FFF");-->
+<!--    canvasGradient.addColorStop(1,"white");-->
+<!--    // Fill with gradient-->
+<!--    canvasInner.fillStyle = canvasGradient;-->
+<!--    canvasInner.fillRect(0,0,200,200);-->
+<!--</script>-->
+
+<!--<canvas id="myCanvasText" width="200" height="100" style="border:1px solid red;">-->
+<!--    Your browser does not support the HTML5 canvas tag.-->
+<!--</canvas>-->
+
+<!--<script>-->
+<!--    let canvasInfo2 = document.getElementById("myCanvasText");-->
+<!--    let canvasInner2 = canvasInfo2.getContext("2d");-->
+<!--    canvasInner2.font = "33px Nunito";-->
+<!--    canvasInner2.strokeText("Hello World",10,60);-->
+<!--</script>-->
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="libs/owl-carousel/owl.carousel.js"></script>
+<script src="libs/slick/slick.min.js"></script>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>

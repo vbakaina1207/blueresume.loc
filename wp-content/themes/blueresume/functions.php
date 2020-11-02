@@ -146,7 +146,11 @@ add_action( 'widgets_init', 'blueresume_widgets_init' );
  * Enqueue scripts and styles.
  */
 function blueresume_scripts() {
-	wp_enqueue_style( 'blueresume-style', get_stylesheet_uri(), array(), _S_VERSION );
+    wp_enqueue_style( 'google-fonts-style', "https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic", array(), _S_VERSION );
+    wp_enqueue_style( 'my-fonts-style', get_template_directory_uri()."/assets/fonts/style.css", array(), _S_VERSION );
+    wp_enqueue_style( 'my-main-style', get_template_directory_uri()."/assets/css/style.css", array(), _S_VERSION );
+
+    wp_enqueue_style( 'blueresume-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'blueresume-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'blueresume-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
@@ -154,6 +158,9 @@ function blueresume_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+    wp_enqueue_script( 'jquery-js', "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", array(), _S_VERSION, true );
+    wp_enqueue_script( 'main-js', get_template_directory_uri()."/assets/js/script.js", array(), _S_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'blueresume_scripts' );
 
@@ -195,3 +202,4 @@ if ( class_exists( 'WooCommerce' ) ) {
  * Customizer additions.
  */
 require get_template_directory() . '/inc/carbon.php';
+
