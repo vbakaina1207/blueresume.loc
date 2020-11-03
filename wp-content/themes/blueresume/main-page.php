@@ -8,17 +8,25 @@ Template Name: Main Page
     <header>
         <div class="top__line">
             <div class="top__line_left">
-                <div class="top__line_left-menu">
-                    <ul>
-                        <?php $data_line_left_menu = carbon_get_post_meta( get_the_ID(), 'main_left_menu' ); ?>
-                        <?php foreach ( $data_line_left_menu as $item_link ): ?>
-                        <li><a class="scroll-to" href="<?php echo $item_link['left_menu_link'] ?>"><?php echo $item_link['left_menu'] ?></a></li>
-                        <?php endforeach; ?>
+                <?php
+                wp_nav_menu( [
+                'theme_location'  => 'menu-1',
+                'menu'            => 'Top left',
+                'container'       => 'div',
+                'container_class' => 'top__line_left-menu',
+                ] );
+                ?>
+<!--                <div class="top__line_left-menu">-->
+<!--                    <ul>-->
+<!--                        --><?php //$data_line_left_menu = carbon_get_post_meta( get_the_ID(), 'main_left_menu' ); ?>
+<!--                        --><?php //foreach ( $data_line_left_menu as $item_link ): ?>
+<!--                        <li><a class="scroll-to" href="--><?php //echo $item_link['left_menu_link'] ?><!--">--><?php //echo $item_link['left_menu'] ?><!--</a></li>-->
+<!--                        --><?php //endforeach; ?>
 
 <!--                        <li><a class="scroll-to" href="#Works">Works</a></li>-->
 <!--                        <li><a class="scroll-to" href="#About">About</a></li>-->
-                    </ul>
-                </div>
+<!--                    </ul>-->
+<!--                </div>-->
             </div>
             <div class="top__line_center">
                 <?php if ( carbon_get_theme_option( 'logo_image' ) ) { ?>
@@ -28,38 +36,57 @@ Template Name: Main Page
                 <?php } ?>
             </div>
             <div class="top__line_right">
-                <div class="top__line_right-menu">
-                    <ul>
-                        <?php $data_line_right_menu = carbon_get_post_meta( get_the_ID(), 'right_main_menu' ); ?>
-                        <?php foreach ( $data_line_right_menu as $item_link ): ?>
-                            <li><a class="scroll-to" href="<?php echo $item_link['right_menu_link'] ?>"><?php echo $item_link['right_menu'] ?></a></li>
-                        <?php endforeach; ?>
+                <?php
+                wp_nav_menu( [
+                    'theme_location'  => 'menu-2',
+                    'menu'            => 'Top right',
+                    'container'       => 'div',
+                    'container_class' => 'top__line_right-menu',
+                ] );
+                ?>
+
+<!--                <div class="top__line_right-menu">-->
+<!--                    <ul>-->
+<!--                        --><?php //$data_line_right_menu = carbon_get_post_meta( get_the_ID(), 'right_main_menu' ); ?>
+<!--                        --><?php //foreach ( $data_line_right_menu as $item_link ): ?>
+<!--                            <li><a class="scroll-to" href="--><?php //echo $item_link['right_menu_link'] ?><!--">--><?php //echo $item_link['right_menu'] ?><!--</a></li>-->
+<!--                        --><?php //endforeach; ?>
 <!--                        <li><a class="scroll-to" href="#Links">Links</a></li>-->
 <!--                        <li><a class="scroll-to" href="#Contacts">Contacts</a></li>-->
-                    </ul>
-                </div>
+<!--                    </ul>-->
+<!--                </div>-->
             </div>
         </div>
     </header>
     <div id="button_mobile__menu" class="mobile__menu"></div>
-    <div id="block_mobile__menu" class="mobile__block">
-        <ul>
-            <?php $data_line_left_menu = carbon_get_post_meta( get_the_ID(), 'main_left_menu' ); ?>
-            <?php foreach ( $data_line_left_menu as $item_link ): ?>
-                <li><a class="scroll-to" href="<?php echo $item_link['left_menu_link'] ?>"><?php echo $item_link['left_menu'] ?></a></li>
-            <?php endforeach; ?>
+    <?php
+    wp_nav_menu( [
+        'theme_location'  => 'menu-3',
+        'menu'            => 'Mobile menu',
+        'container'       => 'div',
+        'container_class' => 'mobile__block',
+        'container_id'    => 'block_mobile__menu',
+    ] );
+    ?>
 
-            <?php $data_line_right_menu = carbon_get_post_meta( get_the_ID(), 'right_main_menu' ); ?>
-            <?php foreach ( $data_line_right_menu as $item_link ): ?>
-                <li><a class="scroll-to" href="<?php echo $item_link['right_menu_link'] ?>"><?php echo $item_link['right_menu'] ?></a></li>
-            <?php endforeach; ?>
+<!--    <div id="block_mobile__menu" class="mobile__block">-->
+<!--        <ul>-->
+<!--            --><?php //$data_line_left_menu = carbon_get_post_meta( get_the_ID(), 'main_left_menu' ); ?>
+<!--            --><?php //foreach ( $data_line_left_menu as $item_link ): ?>
+<!--                <li><a class="scroll-to" href="--><?php //echo $item_link['left_menu_link'] ?><!--">--><?php //echo $item_link['left_menu'] ?><!--</a></li>-->
+<!--            --><?php //endforeach; ?>
+
+<!--            --><?php //$data_line_right_menu = carbon_get_post_meta( get_the_ID(), 'right_main_menu' ); ?>
+<!--            --><?php //foreach ( $data_line_right_menu as $item_link ): ?>
+<!--                <li><a class="scroll-to" href="--><?php //echo $item_link['right_menu_link'] ?><!--">--><?php //echo $item_link['right_menu'] ?><!--</a></li>-->
+<!--            --><?php //endforeach; ?>
 <!--            <li><a class="scroll-to" href="#Works">Works</a></li>
             <li><a class="scroll-to" href="#About">About</a></li>
             <li><a class="scroll-to" href="#Links">Links</a></li>
             <li><a class="scroll-to" href="#Contacts">Contacts</a></li>
 -->
-        </ul>
-    </div>
+<!--        </ul>-->
+<!--    </div>-->
     <section>
 
         <?php if ( carbon_get_post_meta( get_the_ID(), 'main-slag' ) ) { ?>

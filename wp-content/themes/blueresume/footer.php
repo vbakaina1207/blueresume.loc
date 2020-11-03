@@ -37,17 +37,22 @@
             </div>
         </div>
         <div class="contact__form">
-            <form onsubmit="return validate();">
-                <div class="form-group-line">
+            <?php echo do_shortcode('[contact-form-7 id="45" title="Контактная форма 2"]'); ?>
+
+
+
+            <!--            <form onsubmit="return validate();">-->
+<!--            <form>
+               <div class="form-group-line">
                     <label class="form-label" for="in_name">Name</label>
-                    <input type="text" class="form-input" id="in_name" placeholder="Incognito">
-                    <div class="form-error" id="in_name_error">Поле должно быть заполнено</div>
-                </div>
+                    <input type="text" class="form-input" id="in_name" placeholder="Incognito">-->
+<!--                    <div class="form-error" id="in_name_error">Поле должно быть заполнено</div>-->
+      <!--         </div>
                 <div class="form-group-line">
                     <label class="form-label" for="in_email">E-mail</label>
-                    <input type="email" class="form-input" id="in_email" placeholder="incognito@gmail.com">
-                    <div class="form-error" id="in_email_error">Вы неправильно ввели E-mail</div>
-                </div>
+                    <input type="email" class="form-input" id="in_email" placeholder="incognito@gmail.com">-->
+<!--                    <div class="form-error" id="in_email_error">Вы неправильно ввели E-mail</div>-->
+         <!--       </div>
 
                 <div class="form-group-line">
                     <label class="form-label" for="message">Message</label>
@@ -57,21 +62,30 @@
                     <span class="icon ed-tl"></span>
                 </button>
             </form>
-        </div>
+        </div>-->
     </div>
     <div class="copyright">
         <div class="copyright__text">
             <?php echo carbon_get_post_meta( get_the_ID(), 'copyright' ); ?>
 <!--            Copyright &copy; 2018 Denis Abdullin – deab.ru-->
         </div>
-        <div class="copyright__link">
-            <?php $data_copyright_links = carbon_get_post_meta( get_the_ID(), 'copyright_links' ); ?>
-            <?php foreach ( $data_copyright_links as $item_link ): ?>
-                <a href="<?php echo $item_link['copyright_link'] ?>"><?php echo $item_link['copyright_text'] ?></a>
-            <?php endforeach; ?>
+<!--        <div class="copyright__link">-->
+            <?php
+            wp_nav_menu( [
+                'theme_location'  => 'menu-4',
+                'menu'            => 'Copyright menu',
+                'container'       => 'div',
+                'container_class' => 'copyright__link',
+                'items_wrap'      => '%3$s',
+            ] );
+            ?>
+<!--            --><?php //$data_copyright_links = carbon_get_post_meta( get_the_ID(), 'copyright_links' ); ?>
+<!--            --><?php //foreach ( $data_copyright_links as $item_link ): ?>
+<!--                <a href="--><?php //echo $item_link['copyright_link'] ?><!--">--><?php //echo $item_link['copyright_text'] ?><!--</a>-->
+<!--            --><?php //endforeach; ?>
 <!--            <a href="#">Invoicing</a>-->
 <!--            <a href="#">Documents</a>-->
-        </div>
+<!--        </div>-->
     </div>
 </footer>
 <div class="contain-popup">

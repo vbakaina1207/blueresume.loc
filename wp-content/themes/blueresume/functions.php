@@ -56,7 +56,10 @@ if ( ! function_exists( 'blueresume_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'blueresume' ),
+				'menu-1' => esc_html__( 'Top left', 'blueresume' ),
+                'menu-2' => esc_html__( 'Top right', 'blueresume' ),
+                'menu-3' => esc_html__( 'Mobile menu', 'blueresume' ),
+                'menu-4' => esc_html__( 'Copyright menu', 'blueresume' ),
 			)
 		);
 
@@ -142,6 +145,7 @@ function blueresume_widgets_init() {
 }
 add_action( 'widgets_init', 'blueresume_widgets_init' );
 
+
 /**
  * Enqueue scripts and styles.
  */
@@ -202,4 +206,25 @@ if ( class_exists( 'WooCommerce' ) ) {
  * Customizer additions.
  */
 require get_template_directory() . '/inc/carbon.php';
+
+/* */
+
+add_action( 'wp_footer', 'redirect_cf7' );
+
+function redirect_cf7() {
+    ?>
+    <script type="text/javascript">
+       // setTimeout(function() {
+        document.addEventListener( 'wpcf7submit', function( event ) {
+            if ( '45' == event.detail.contactFormId ) {
+                location.assign('http://blueresume.loc/vasha-forma-otpravlena/');
+            }
+        }, false );
+       setTimeout(function() {
+           //  window.history.go(-1);
+           history.back();
+       }, 5 * 1000);
+    </script>
+    <?php
+}
 
