@@ -214,8 +214,7 @@ add_action( 'wp_footer', 'redirect_cf7' );
 function redirect_cf7() {
     ?>
     <script type="text/javascript">
-       // setTimeout(function() {
-        document.addEventListener( 'wpcf7submit', function( event ) {
+        document.addEventListener( 'wpcf7mailsent', function( event ) {
             if ( '45' == event.detail.contactFormId ) {
                 location.assign('http://blueresume.loc/vasha-forma-otpravlena/');
             }

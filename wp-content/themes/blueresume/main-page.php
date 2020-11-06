@@ -16,6 +16,8 @@ Template Name: Main Page
                 'container_class' => 'top__line_left-menu',
                 ] );
                 ?>
+
+
 <!--                <div class="top__line_left-menu">-->
 <!--                    <ul>-->
 <!--                        --><?php //$data_line_left_menu = carbon_get_post_meta( get_the_ID(), 'main_left_menu' ); ?>
@@ -88,6 +90,7 @@ Template Name: Main Page
 <!--        </ul>-->
 <!--    </div>-->
     <section>
+        <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, iste nostrum praesentium quis similique sunt! Delectus ducimus eius quasi tenetur?</h1>
 
         <?php if ( carbon_get_post_meta( get_the_ID(), 'main-slag' ) ) { ?>
             <div class="main__slogan">
