@@ -1,9 +1,9 @@
 /*!
 Theme Name: Blue Resume
 Theme URI: http://underscores.me/
-Author: Victoria Bakakina
-Author URI: https://github.com/vbakaina1207
-Description: Тема  WP Резюме
+Author: Valentin Gorbatenko
+Author URI: https://github.com/ValentinGor
+Description: Тема WP Резюме.
 Version: 1.0.0
 Tested up to: 5.4
 Requires PHP: 5.6
@@ -22,19 +22,19 @@ Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
 
-span.wpcf7-form-control-wrap.input_name {
+.wpcf7-form-control-wrap {
+	position: relative;
 	width: 100%;
 }
 
-span.wpcf7-form-control-wrap.input-email {
-	width: 100%;
+.wpcf7-not-valid-tip {
+	position: absolute;
+	top: 48px;
+	font-size: 12px;
 }
 
-span.wpcf7-form-control-wrap.input-textarea {
-	width: 100%;
-}
-
-li.menu-item-object-custom
-{
-	list-style: none;
+span.wpcf7-not-valid-tip {
+	position: absolute;
+	font-size: 12px;
+	top: 48px;
 }

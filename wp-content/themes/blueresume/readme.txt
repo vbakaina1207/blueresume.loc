@@ -14,7 +14,7 @@ A starter theme called Blue Resume.
 
 == Description ==
 
-Тема  WP Резюме
+Тема WP Резюме.
 
 == Installation ==
 

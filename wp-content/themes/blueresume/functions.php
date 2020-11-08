@@ -57,9 +57,8 @@ if ( ! function_exists( 'blueresume_setup' ) ) :
 		register_nav_menus(
 			array(
 				'menu-1' => esc_html__( 'Top left', 'blueresume' ),
-                'menu-2' => esc_html__( 'Top right', 'blueresume' ),
-                'menu-3' => esc_html__( 'Mobile menu', 'blueresume' ),
-                'menu-4' => esc_html__( 'Copyright menu', 'blueresume' ),
+				'menu-2' => esc_html__( 'Top right', 'blueresume' ),
+				'menu-3' => esc_html__( 'Mobile menu', 'blueresume' ),
 			)
 		);
 
@@ -145,16 +144,15 @@ function blueresume_widgets_init() {
 }
 add_action( 'widgets_init', 'blueresume_widgets_init' );
 
-
 /**
  * Enqueue scripts and styles.
  */
 function blueresume_scripts() {
-    wp_enqueue_style( 'google-fonts-style', "https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic", array(), _S_VERSION );
-    wp_enqueue_style( 'my-fonts-style', get_template_directory_uri()."/assets/fonts/style.css", array(), _S_VERSION );
-    wp_enqueue_style( 'my-main-style', get_template_directory_uri()."/assets/css/style.css", array(), _S_VERSION );
+	wp_enqueue_style( 'google-fonts-style', "https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic", array(), _S_VERSION );
+	wp_enqueue_style( 'my-fonts-style', get_template_directory_uri()."/assets/fonts/style.css", array(), _S_VERSION );
+	wp_enqueue_style( 'my-main-style', get_template_directory_uri()."/assets/css/style.css", array(), _S_VERSION );
 
-    wp_enqueue_style( 'blueresume-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'blueresume-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'blueresume-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'blueresume-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
@@ -165,6 +163,7 @@ function blueresume_scripts() {
 
     wp_enqueue_script( 'jquery-js', "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", array(), _S_VERSION, true );
     wp_enqueue_script( 'main-js', get_template_directory_uri()."/assets/js/script.js", array(), _S_VERSION, true );
+
 }
 add_action( 'wp_enqueue_scripts', 'blueresume_scripts' );
 
@@ -184,7 +183,7 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
-* Customizer additions.
+ * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
 
@@ -207,23 +206,162 @@ if ( class_exists( 'WooCommerce' ) ) {
  */
 require get_template_directory() . '/inc/carbon.php';
 
-/* */
+/**
+ * Удалить атрибут type у scripts и styles
+ */
+add_action( 'template_redirect', function () {
+    ob_start( function ( $buffer ) {
+        $buffer = str_replace( array( 'type="text/javascript"', "type='text/javascript'" ), '', $buffer );
+        $buffer = str_replace( array( 'type="text/css"', "type='text/css'" ), '', $buffer );
 
-add_action( 'wp_footer', 'redirect_cf7' );
+        return $buffer;
+    } );
+} );
 
-function redirect_cf7() {
-    ?>
-    <script type="text/javascript">
-        document.addEventListener( 'wpcf7mailsent', function( event ) {
-            if ( '45' == event.detail.contactFormId ) {
-                location.assign('http://blueresume.loc/vasha-forma-otpravlena/');
+// `Disable Emojis` Plugin Version: 1.7.2
+if ( 'Отключаем Emojis в WordPress' ) {
+
+    /**
+     * Disable the emoji's
+     */
+    function disable_emojis() {
+        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+        remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+        remove_action( 'wp_print_styles', 'print_emoji_styles' );
+        remove_action( 'admin_print_styles', 'print_emoji_styles' );
+        remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+        remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+        remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+        add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+        add_filter( 'wp_resource_hints', 'disable_emojis_remove_dns_prefetch', 10, 2 );
+    }
+
+    add_action( 'init', 'disable_emojis' );
+
+    /**
+     * Filter function used to remove the tinymce emoji plugin.
+     *
+     * @param array $plugins
+     *
+     * @return   array             Difference betwen the two arrays
+     */
+    function disable_emojis_tinymce( $plugins ) {
+        if ( is_array( $plugins ) ) {
+            return array_diff( $plugins, array( 'wpemoji' ) );
+        }
+
+        return array();
+    }
+
+    /**
+     * Remove emoji CDN hostname from DNS prefetching hints.
+     *
+     * @param array $urls URLs to print for resource hints.
+     * @param string $relation_type The relation type the URLs are printed for.
+     *
+     * @return array                 Difference betwen the two arrays.
+     */
+    function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
+        if ( 'dns-prefetch' == $relation_type ) {
+            // Strip out any URLs referencing the WordPress.org emoji location
+            $emoji_svg_url_bit = 'https://s.w.org/images/core/emoji/';
+            foreach ( $urls as $key => $url ) {
+                if ( strpos( $url, $emoji_svg_url_bit ) !== false ) {
+                    unset( $urls[ $key ] );
+                }
             }
-        }, false );
-       setTimeout(function() {
-           //  window.history.go(-1);
-           history.back();
-       }, 5 * 1000);
-    </script>
-    <?php
+        }
+
+        return $urls;
+    }
 }
 
+/**
+ * Отключить стандартный текстовый редактор постов
+ */
+function disable_content_editor() {
+    remove_post_type_support( 'page', 'editor' );
+    remove_post_type_support( 'post', 'editor' );
+}
+
+add_action( 'admin_init', 'disable_content_editor' );
+
+/**
+ * Вывести колонку "ID" в админке
+ */
+add_action( 'admin_init', 'admin_area_ID' );
+function admin_area_ID() {
+    // для таксономий (рубрик, меток и т.д.)
+    foreach ( get_taxonomies() as $taxonomy ) {
+        add_action( "manage_edit-${taxonomy}_columns", 'tax_add_col' );
+        add_filter( "manage_edit-${taxonomy}_sortable_columns", 'tax_add_col' );
+        add_filter( "manage_${taxonomy}_custom_column", 'tax_show_id', 10, 3 );
+    }
+    add_action( 'admin_print_styles-edit-tags.php', 'tax_id_style' );
+    function tax_add_col( $columns ) {
+        return $columns + array( 'tax_id' => 'ID' );
+    }
+
+    function tax_show_id( $v, $name, $id ) {
+        return 'tax_id' === $name ? $id : $v;
+    }
+
+    function tax_id_style() {
+        print '<style>#tax_id{width:4em}</style>';
+    }
+
+    // для постов и страниц
+    add_filter( 'manage_posts_columns', 'posts_add_col', 5 );
+    add_action( 'manage_posts_custom_column', 'posts_show_id', 5, 2 );
+    add_filter( 'manage_pages_columns', 'posts_add_col', 5 );
+    add_action( 'manage_pages_custom_column', 'posts_show_id', 5, 2 );
+    add_action( 'admin_print_styles-edit.php', 'posts_id_style' );
+    function posts_add_col( $defaults ) {
+        $defaults['wps_post_id'] = __( 'ID' );
+
+        return $defaults;
+    }
+
+    function posts_show_id( $column_name, $id ) {
+        if ( $column_name === 'wps_post_id' ) {
+            echo $id;
+        }
+    }
+
+    function posts_id_style() {
+        print '<style>#wps_post_id{width:4em}</style>';
+    }
+}
+
+
+function getPostViews( $postID ) {
+    $count_key = 'post_views_count';
+    $count     = get_post_meta( $postID, $count_key, true );
+    if ( $count == '' ) {
+        delete_post_meta( $postID, $count_key );
+        add_post_meta( $postID, $count_key, '0' );
+
+        return "0 просмотров";
+    }
+
+    return $count . ' просмотр';
+}
+
+function setPostViews( $postID ) {
+    $count_key = 'post_views_count';
+    $count     = get_post_meta( $postID, $count_key, true );
+    if ( $count == '' ) {
+        $count = 0;
+        delete_post_meta( $postID, $count_key );
+        add_post_meta( $postID, $count_key, '0' );
+    } else {
+        $count ++;
+        update_post_meta( $postID, $count_key, $count );
+    }
+}
+
+
+/**
+ * Убрать теги p и br в Contact Form 7
+ */
+add_filter( 'wpcf7_autop_or_not', '__return_false' );
