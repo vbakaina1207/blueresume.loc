@@ -1,117 +1,98 @@
 <?php
 /*
 Template Name: Main Page
+Template Post Type: page
 */
 ?>
 <?php get_header() ?>
+<div id="Top" style="position: absolute; top: -100px;"></div>
 <div class="line">
     <header>
         <div class="top__line">
             <div class="top__line_left">
                 <?php
-                wp_nav_menu( [
-                'theme_location'  => 'menu-1',
-                'menu'            => 'Top left',
-                'container'       => 'div',
-                'container_class' => 'top__line_left-menu',
-                ] );
+                wp_nav_menu([
+                    'theme_location' => 'menu-1',
+                    'menu' => 'Top left',
+                    'container' => 'div',
+                    'container_class' => 'top__line_left-menu',
+                ]);
                 ?>
-
-
-<!--                <div class="top__line_left-menu">-->
-<!--                    <ul>-->
-<!--                        --><?php //$data_line_left_menu = carbon_get_post_meta( get_the_ID(), 'main_left_menu' ); ?>
-<!--                        --><?php //foreach ( $data_line_left_menu as $item_link ): ?>
-<!--                        <li><a class="scroll-to" href="--><?php //echo $item_link['left_menu_link'] ?><!--">--><?php //echo $item_link['left_menu'] ?><!--</a></li>-->
-<!--                        --><?php //endforeach; ?>
-
-<!--                        <li><a class="scroll-to" href="#Works">Works</a></li>-->
-<!--                        <li><a class="scroll-to" href="#About">About</a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
+                <!--
+                <div class="top__line_left-menu">
+                    <ul>
+                        <li><a href="#Works">Works</a></li>
+                        <li><a href="#About">About</a></li>
+                    </ul>
+                </div>
+                -->
             </div>
             <div class="top__line_center">
-                <?php if ( carbon_get_theme_option( 'logo_image' ) ) { ?>
+                <?php if (carbon_get_theme_option('logo_image')) { ?>
                     <div class="top__line_center-logo">
-                        <a href="<?php get_home_url();?>"><img src="<?php echo carbon_get_theme_option( 'logo_image' ); ?>" alt="img"></a>
+                        <a href="<?php get_home_url(); ?>"><img src="<?php echo carbon_get_theme_option('logo_image'); ?>" alt="img"></a>
                     </div>
                 <?php } ?>
             </div>
             <div class="top__line_right">
                 <?php
-                wp_nav_menu( [
-                    'theme_location'  => 'menu-2',
-                    'menu'            => 'Top right',
-                    'container'       => 'div',
+                wp_nav_menu([
+                    'theme_location' => 'menu-2',
+                    'menu' => 'Top right',
+                    'container' => 'div',
                     'container_class' => 'top__line_right-menu',
-                ] );
+                ]);
                 ?>
-
-<!--                <div class="top__line_right-menu">-->
-<!--                    <ul>-->
-<!--                        --><?php //$data_line_right_menu = carbon_get_post_meta( get_the_ID(), 'right_main_menu' ); ?>
-<!--                        --><?php //foreach ( $data_line_right_menu as $item_link ): ?>
-<!--                            <li><a class="scroll-to" href="--><?php //echo $item_link['right_menu_link'] ?><!--">--><?php //echo $item_link['right_menu'] ?><!--</a></li>-->
-<!--                        --><?php //endforeach; ?>
-<!--                        <li><a class="scroll-to" href="#Links">Links</a></li>-->
-<!--                        <li><a class="scroll-to" href="#Contacts">Contacts</a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
+                <!--
+                <div class="top__line_right-menu">
+                    <ul>
+                        <li><a href="#Links">Links</a></li>
+                        <li><a href="#Contacts">Contacts</a></li>
+                    </ul>
+                </div>
+                -->
             </div>
         </div>
     </header>
     <div id="button_mobile__menu" class="mobile__menu"></div>
     <?php
-    wp_nav_menu( [
-        'theme_location'  => 'menu-3',
-        'menu'            => 'Mobile menu',
-        'container'       => 'div',
+    wp_nav_menu([
+        'theme_location' => 'menu-3',
+        'menu' => 'Mobile menu',
+        'container' => 'div',
         'container_class' => 'mobile__block',
-        'container_id'    => 'block_mobile__menu',
-    ] );
+        'container_id' => 'block_mobile__menu',
+    ]);
     ?>
+    <!--
+    <div id="block_mobile__menu" class="mobile__block">
+        <ul>
+            <li><a href="#Works">Works</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Links">Links</a></li>
+            <li><a href="#Contacts">Contacts</a></li>
+        </ul>
+    </div>
+    -->
 
-<!--    <div id="block_mobile__menu" class="mobile__block">-->
-<!--        <ul>-->
-<!--            --><?php //$data_line_left_menu = carbon_get_post_meta( get_the_ID(), 'main_left_menu' ); ?>
-<!--            --><?php //foreach ( $data_line_left_menu as $item_link ): ?>
-<!--                <li><a class="scroll-to" href="--><?php //echo $item_link['left_menu_link'] ?><!--">--><?php //echo $item_link['left_menu'] ?><!--</a></li>-->
-<!--            --><?php //endforeach; ?>
-
-<!--            --><?php //$data_line_right_menu = carbon_get_post_meta( get_the_ID(), 'right_main_menu' ); ?>
-<!--            --><?php //foreach ( $data_line_right_menu as $item_link ): ?>
-<!--                <li><a class="scroll-to" href="--><?php //echo $item_link['right_menu_link'] ?><!--">--><?php //echo $item_link['right_menu'] ?><!--</a></li>-->
-<!--            --><?php //endforeach; ?>
-<!--            <li><a class="scroll-to" href="#Works">Works</a></li>
-            <li><a class="scroll-to" href="#About">About</a></li>
-            <li><a class="scroll-to" href="#Links">Links</a></li>
-            <li><a class="scroll-to" href="#Contacts">Contacts</a></li>
--->
-<!--        </ul>-->
-<!--    </div>-->
     <section>
 
-
-        <?php if ( carbon_get_post_meta( get_the_ID(), 'main-slag' ) ) { ?>
+        <?php if (carbon_get_post_meta(get_the_ID(), 'main-slag')) { ?>
             <div class="main__slogan">
-                    <div class="main__slogan_head">
-                        <h1><?php echo carbon_get_post_meta( get_the_ID(), 'main-slag' ); ?></h1>
-                    </div>
+                <div class="main__slogan_head">
+                    <h1><?php echo carbon_get_post_meta(get_the_ID(), 'main-slag'); ?></h1>
+                </div>
             </div>
-            <?php } ?>
-<!--            <div class="main__slogan_head">-->
-<!--                <h1>Motivation Is The First Step To <span>Success</span></h1>-->
-<!--            </div>-->
+        <?php } ?>
+
 
         <div class="social__line">
-            <?php $data_social_links = carbon_get_theme_option( 'social_links' ); ?>
-            <?php if ( ! empty( $data_social_links ) ): ?>
-                <?php foreach ( $data_social_links as $item_link ): ?>
+            <?php $data_social_links = carbon_get_theme_option('social_links'); ?>
+            <?php if (!empty($data_social_links)): ?>
+                <?php foreach ($data_social_links as $item_link): ?>
                     <a href="<?php echo $item_link['social_link'] ?>" target="_blank"><span class="icon <?php echo $item_link['fonts_code'] ?>"></span></a>
                 <?php endforeach; ?>
             <?php endif; ?>
-<!--            <a href="#" target="_blank"><span class="icon ed-fb"></span></a>-->
-<!--            <a href="#" target="_blank"><span class="icon ed-in"></span></a>-->
         </div>
     </section>
 
@@ -122,52 +103,43 @@ Template Name: Main Page
                 <h2>Works</h2>
             </div>
             <div class="works__left">
-                <?php $data_works_left = carbon_get_post_meta( get_the_ID(),'works_left' ); ?>
-                <?php foreach ( $data_works_left as $item_link ): ?>
-                <div class="project" style="background-image: url(<?php echo get_template_directory_uri();?><?php echo $item_link['works_left_img'] ?>);">
-               <?php if ( ! empty( $item_link['works_left_link'] ) ): ?>
-                <div class="project__links">
-                        <a href="<?php echo $item_link['works_left_link'] ?>" target="_blank"><?php echo $item_link['works_left_link_name'] ?></a>
-                    </div>
-               <?php endif; ?>
-                    <div class="project__text">
-                        <?php echo $item_link['works_left_text'] ?>
-                    </div>
- <!--                  <div class="project__links">
-                        <a href="#" target="_blank">Featured</a>
-                    </div>
+                <div class="project" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/img_1.webp);">
+
                     <div class="project__text">
                         Motivation Is The First Step To Success
                     </div>
-                    -->
+                    <div class="project__links">
+                        <a href="#" target="_blank">Featured</a>
+                    </div>
                 </div>
-                <?php endforeach; ?>
-
-                <!--         <div class="project" style="background-image: url(<?php echo get_template_directory_uri();?>/assets/img/img_2.webp);">
+                <div class="project" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/img_2.webp);">
                     <div class="project__text">
                         Benjamin Franklin S Method Of Habit Formation
                     </div>
+                    <div class="project__links">
+                        <a href="#" target="_blank">Featured</a>
+                    </div>
                 </div>
-                -->
             </div>
             <div class="works__right">
-                
-                <?php $data_works_right = carbon_get_post_meta( get_the_ID(),'works_right' ); ?>
-                <?php foreach ( $data_works_right as $item_link ): ?>
-                <div class="project" style="background-image: url(<?php echo get_template_directory_uri();?><?php echo $item_link['works_right_img'] ?>);">
-                    <?php if ( ! empty( $item_link['works_right_link'] ) ): ?>
-                    <div class="project__links">
-                        <a href="<?php echo $item_link['works_right_link'] ?>" target="_blank"><?php echo $item_link['works_right_link_name'] ?></a>
-                    </div>
-                    <?php endif; ?>
+                <div class="project" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/img_3.webp);">
                     <div class="project__text">
-                        <?php echo $item_link['works_right_text'] ?>I
+                        How Great Is The Strength Of Your Belief
+                    </div>
+                    <div class="project__links">
+                        <a href="#" target="_blank">Featured</a>
                     </div>
                 </div>
-                <?php endforeach; ?>
+                <div class="project" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/img_4.webp);">
+                    <div class="project__text">
+                        Increasing Prosperity With Positive Thinking
+                    </div>
+                    <div class="project__links">
+                        <a href="#" target="_blank">Featured</a>
+                    </div>
+                </div>
             </div>
         </div>
-
     </section>
     <section>
         <div id="About"></div>
@@ -175,18 +147,7 @@ Template Name: Main Page
             <div class="about__head">
                 <h2>About</h2>
             </div>
-            <?php $data_about__info = carbon_get_post_meta( get_the_ID(), 'about__info' ); ?>
-            <?php foreach ( $data_about__info as $item_link ): ?>
             <div class="about__info">
-                <div class="about__info_head">
-                    <h3><?php echo $item_link['about__info_head'] ?></h3>
-                </div>
-                <div class="about__info_text myClass">
-                    <?php echo $item_link['about__info_text'] ?>
-                </div>
-            </div>
-            <?php endforeach; ?>
-<!--            <div class="about__info">
                 <div class="about__info_head">
                     <h3>UX/UI</h3>
                 </div>
@@ -221,7 +182,6 @@ Template Name: Main Page
                     have a negative effect on you mentally, physically, or totally.
                 </div>
             </div>
-            -->
         </div>
     </section>
     <section>
@@ -229,6 +189,34 @@ Template Name: Main Page
         <div class="links">
             <div class="links__head">
                 <h2>Links</h2>
+            </div>
+            <div class="links__info">
+                <div class="links__info_text"><a href=" https://github.com/ValentinGor " target="_blank">Harness The Power Of Words In Your Life</a></div>
+                <div class="links__info_year">2018</div>
+            </div>
+            <div class="links__info">
+                <div class="links__info_text"><a href=" https://github.com/ValentinGor " target="_blank">A Starter Guide To Self Improvement</a></div>
+                <div class="links__info_year">2018</div>
+            </div>
+            <div class="links__info">
+                <div class="links__info_text"><a href=" https://github.com/ValentinGor " target="_blank">Benjamin Franklin S Method Of Habit Formation</a></div>
+                <div class="links__info_year">2018</div>
+            </div>
+            <div class="links__info">
+                <div class="links__info_text"><a href=" https://github.com/ValentinGor " target="_blank">Does Your Life Lack Meaning</a></div>
+                <div class="links__info_year">2018</div>
+            </div>
+            <div class="links__info">
+                <div class="links__info_text"><a href=" https://github.com/ValentinGor " target="_blank">Hypnotize Yourself Into The Ghost Of Christmas Future</a></div>
+                <div class="links__info_year">2017</div>
+            </div>
+            <div class="links__info">
+                <div class="links__info_text"><a href=" https://github.com/ValentinGor " target="_blank">Hypnotize Yourself Into The Ghost Of Christmas Future</a></div>
+                <div class="links__info_year">2016</div>
+            </div>
+            <div class="links__info">
+                <div class="links__info_text"><a href=" https://github.com/ValentinGor " target="_blank">Self Motivation How To Keep Yourself Motivated</a></div>
+                <div class="links__info_year">2016</div>
             </div>
         </div>
     </section>
